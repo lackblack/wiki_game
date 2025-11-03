@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki Find - Spot the Error</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading article...</p>
+        </div>
+
+        <!-- Game Content -->
+        <div class="game-content" id="game-content" style="display: none;">
+            <!-- Article -->
+            <div class="article-wrapper">
+                <div class="article-header">
+                    <div class="header-top">
+                        <div class="header-actions">
+                            <div class="header-left">
+                                <div class="level-indicator">
+                                    <span class="level-text"><span id="current-level">0</span>/<span id="max-levels">10</span></span>
+                                </div>
+                                <div class="mistakes-section">
+                                    <div class="mistakes-label">Mistakes Remaining:</div>
+                                    <div class="mistakes-indicators" id="mistakes-indicators">
+                                        <span class="mistake-dot"></span>
+                                        <span class="mistake-dot"></span>
+                                    </div>
+                                    <span class="wrong-indicator" id="wrong-indicator" style="display: none;">Wrong</span>
+                                    <span class="correct-indicator" id="correct-indicator" style="display: none;">
+                                        <span class="correct-text" id="correct-text"></span>
+                                        <button id="next-level-btn" class="next-level-btn">Next</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="header-right">
+                                <button id="dev-toggle-btn" class="dev-toggle-btn" title="Show developer options">⚙️</button>
+                                <div class="dev-controls-panel" id="dev-controls-panel" style="display: none;">
+                                    <button id="new-game-btn" class="game-btn secondary">New Game</button>
+                                    <button id="dev-mode-btn" class="game-btn secondary" style="background: #ff6b6b; color: white;">🛠️ Dev Mode</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feedback" id="feedback"></div>
+                    <div class="title-section">
+                        <div class="title-left">
+                            <h2 id="article-title" class="article-title"></h2>
+                            <div class="article-source" id="article-category">General Knowledge</div>
+                        </div>
+                    </div>
+                    <!-- Submit Buttons (appears below category when text is selected) -->
+                    <div class="submit-buttons-wrapper">
+                        <div class="submit-buttons" id="submit-buttons" style="display: none;">
+                            <button id="submit-guess-btn" class="submit-btn primary">Submit Selection</button>
+                            <button id="clear-selection-btn" class="submit-btn clear">Clear</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-content" id="article-content">
+                    <!-- Article text will be inserted here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tutorial Section -->
+        <div class="tutorial-section">
+            <div class="tutorial-content">
+                <h3>How to Play</h3>
+                <p>Each article contains <strong>one incorrect word</strong>. Click words in the article to select them, then click <strong>"Submit Selection"</strong> to check your answer. You have <strong>2 mistakes</strong> to find the error. The correct word will stay highlighted in green when you find it.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="victory-modal" id="victory-modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Correct!</h2>
+            <p id="victory-message"></p>
+            <div class="modal-actions">
+                <button id="next-game-btn" class="game-btn primary">Next Game</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dev Mode Panel -->
+    <div class="dev-mode-panel" id="dev-mode-panel">
+        <div class="dev-mode-content">
+            <div class="dev-mode-header">
+                <h2>🛠️ Dev Mode</h2>
+                <button id="close-dev-mode" class="game-btn secondary" style="padding: 6px 12px; font-size: 0.9rem;">✕</button>
+            </div>
+            <div class="dev-mode-body">
+                <div class="dev-tabs" id="dev-tabs">
+                    <button class="dev-tab active" data-tab="create">➕ Create New</button>
+                    <button class="dev-tab" data-tab="manage">📋 Manage Articles</button>
+                </div>
+                
+                <!-- Create New Tab -->
+                <div class="dev-tab-content active" id="dev-tab-create">
+                    <div class="dev-controls">
+                        <div class="dev-control-group">
+                            <label>Article Subject:</label>
+                            <input type="text" id="dev-subject-input" placeholder="e.g., Paris, Einstein, etc." class="dev-input">
+                            <button id="dev-fetch-btn" class="game-btn primary">Fetch Article</button>
+                        </div>
+                        <div class="dev-status" id="dev-status">Ready to fetch article...</div>
+                    </div>
+                    
+                    <div class="dev-instructions">
+                        <p><strong>Quick Guide:</strong></p>
+                        <ol>
+                            <li>Enter a subject and fetch the article</li>
+                            <li>Click words in the article to replace them</li>
+                            <li>Enter replacement word and confirm</li>
+                            <li>Article auto-saves when you click "Add to Game" ✨</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- Manage Articles Tab -->
+                <div class="dev-tab-content" id="dev-tab-manage">
+                    <div class="dev-articles-list-full">
+                        <div class="dev-list-header">
+                            <h3>Your Articles (<span id="dev-articles-count-full">0</span>)</h3>
+                            <button id="dev-export-btn" class="game-btn secondary" style="font-size: 0.85rem; padding: 6px 12px;">📥 Export Backup</button>
+                        </div>
+                        <div id="dev-articles-list-content-full"></div>
+                    </div>
+                </div>
+                <div class="dev-selection-controls" id="dev-selection-controls" style="display: none;">
+                    <div class="dev-control-group">
+                        <label>Selected Word: <span id="dev-selected-word" style="font-weight: bold; color: #ff6b6b;"></span></label>
+                        <input type="text" id="dev-replacement-input" placeholder="Enter replacement word" class="dev-input">
+                        <button id="dev-confirm-replacement-btn" class="game-btn primary">Confirm Replacement</button>
+                        <button id="dev-clear-selection-btn" class="game-btn secondary">Clear Selection</button>
+                    </div>
+                </div>
+                <div class="dev-save-section" id="dev-save-section" style="display: none;">
+                    <div class="dev-control-group">
+                        <label>Category:</label>
+                        <input type="text" id="dev-category-input" placeholder="e.g., Geography, Biography, Science" class="dev-input">
+                        <button id="dev-save-btn" class="game-btn primary">💾 Save Article to Game</button>
+                        <small style="color: #666; margin-top: 5px;">
+                            💡 Tip: If using Chrome/Edge, you can save directly to your project folder!
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
+
