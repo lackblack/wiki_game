@@ -24,12 +24,12 @@ body {
     background: linear-gradient(135deg, #faf8f3 0%, #f0ebe0 100%);
     color: var(--text-color);
     min-height: 100vh;
-    padding: 20px;
-    line-height: 1.7;
+    padding: 15px;
+    line-height: 1.6;
 }
 
 .game-wrapper {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 10px 20px;
 }
@@ -314,7 +314,7 @@ body {
 /* Article Wrapper */
 .article-wrapper {
     background: var(--card-bg);
-    padding: 25px 40px;
+    padding: 20px 30px;
     border-radius: 16px;
     box-shadow: var(--shadow-lg);
     margin-bottom: 30px;
@@ -340,7 +340,7 @@ body {
 }
 
 .article-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 400;
     color: var(--text-color);
     margin: 0 0 5px 0;
@@ -405,18 +405,18 @@ body {
 
 /* Article Content */
 .article-content {
-    font-size: 1.25rem;
-    line-height: 2;
+    font-size: 1.1rem;
+    line-height: 1.7;
     color: var(--text-color);
     user-select: none;
     -webkit-user-select: none;
-    max-height: 70vh;
+    max-height: 65vh;
     overflow-y: auto;
     padding: 10px 0;
 }
 
 .article-content p {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .article-content a {
@@ -641,9 +641,9 @@ body {
 
 /* Tutorial Section */
 .tutorial-section {
-    max-width: 1200px;
-    margin: 30px auto 0;
-    padding: 0 20px 40px;
+    max-width: 900px;
+    margin: 20px auto 0;
+    padding: 0 20px 30px;
 }
 
 .tutorial-content {
