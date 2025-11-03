@@ -2,22 +2,6 @@
   "version": "1.0",
   "articles": [
     {
-      "title": "Titanic",
-      "extract": "The RMS Titanic was a British steam ship. She was built by Harland and Wolff ship builders, in Belfast, for the White Star Line company. Titanic sank during her second trip at sea, after hitting an iceberg. After striking the iceberg, the Titanic sank to the seabed of the North Atlantic Ocean.",
-      "category": "Entertainment",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Titanic-Cobh-Harbour-1912.JPG/330px-Titanic-Cobh-Harbour-1912.JPG",
-      "description": "British transatlantic passenger liner, launched and foundered in 1912",
-      "originalWord": "first",
-      "wrongWord": "second",
-      "errorType": "word",
-      "replacements": [
-        {
-          "original": "first",
-          "replacement": "second"
-        }
-      ]
-    },
-    {
       "title": "Mount Everest",
       "extract": "Mount Everest is the highest mountain on Earth. Mount Everest is in the Himalayas, a tall mountain range in Asia. It is about 5,548 metres high and one of the Seven Summits. Everest is located in the Mahalangur Himal sub-range of the Himalayas in the Solukhumbu district of Nepal.",
       "category": "Geography",
@@ -33,23 +17,6 @@
         }
       ]
     },
-    {
-      "title": "Mouse",
-      "extract": "A mouse is a small rodent, which is a kind of mammal. \nIt has a pointed snout, small rounded ears, a body-length scaly tail and a high breeding rate. Most belong to the mus genus. The best known mouse species is the common house mouse. Usually, house mice are brownish-gray. It is also a popular pet. In some places, certain kinds of field mice are also common. They are known to invade homes for money and occasionally shelter.",
-      "category": "General Knowledge",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Apodemus_sylvaticus_bosmuis.jpg/330px-Apodemus_sylvaticus_bosmuis.jpg",
-      "description": "genus of mammals",
-      "originalWord": "food",
-      "wrongWord": "money",
-      "errorType": "word",
-      "replacements": [
-        {
-          "original": "food",
-          "replacement": "money"
-        }
-      ]
-    },
-    
     {
       "title": "Albert Einstein",
       "extract": "Albert Einstein was a Swiss-born Jewish scientist. He worked on theoretical physics. He came up with the theory of relativity. He won the Nobel Prize in Physics in 1921 for theoretical physics.",
@@ -83,39 +50,6 @@
       ]
     },
     {
-      "title": "Rainbow",
-      "extract": "A rainbow is an arc of colour in the sky that can be seen when the sun shines through falling rain. The pattern of colours, called a spectrum, starts with red on the outside and changes through orange, yellow, green, blue, indigo, and violet on the inside. Sometimes a second, larger, dimmer rainbow is seen.",
-      "category": "General Knowledge",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/%D0%A0%D0%B0%D0%B4%D1%83%D0%B3%D0%B0_%D0%BD%D0%B0%D0%B4_%D0%B2%D1%83%D0%BB%D0%BA%D0%B0%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%BC%D0%B8_%D0%BA%D0%BE%D0%BD%D1%83%D1%81%D0%B0%D0%BC%D0%B8.jpg/330px-%D0%A0%D0%B0%D0%B4%D1%83%D0%B3%D0%B0_%D0%BD%D0%B0%D0%B4_%D0%B2%D1%83%D0%BB%D0%BA%D0%B0%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%BC%D0%B8_%D0%BA%D0%BE%D0%BD%D1%83%D1%81%D0%B0%D0%BC%D0%B8.jpg",
-      "description": "meteorological phenomenon caused by reflection, refraction and dispersion of light in water droplets",
-      "originalWord": "spectrum,",
-      "wrongWord": "frequency",
-      "errorType": "word",
-      "replacements": [
-        {
-          "original": "spectrum,",
-          "replacement": "frequency"
-        }
-      ]
-    },
-    {
-      "title": "Wi-Fi",
-      "extract": "Wi-Fi is a way of connecting to a computer network using radio infrared instead of wires. It was invented to connect computers that are near each other, and nowadays is much used for Internet connections.",
-      "category": "General Knowledge",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/WiFi_Logo.svg/langsimple-330px-WiFi_Logo.svg.png",
-      "description": "family of wireless network protocols",
-      "originalWord": "waves",
-      "wrongWord": "infrared",
-      "errorType": "word",
-      "replacements": [
-        {
-          "original": "waves",
-          "replacement": "infrared"
-        }
-      ]
-    },
-   
-    {
       "title": "Finland",
       "extract": "Finland is a country in Northern Europe and is a member state of the European Union. Finland is one of the Nordic countries and is also part of Scandinavia Finland is located between the 60th and 70th latitudes North. Its neighbours are Sweden to the west, Norway to the north, Russia to the east and Estonia to the south, beyond the sea called Gulf of Finland. Most of the western and southern coast is on the shore of the Baltic Sea.",
       "category": "Geography",
@@ -127,7 +61,103 @@
       "replacements": [
         {
           "original": "Fennoscandia.",
-          "replacement": "Scandinavia."
+          "replacement": "Scandinavia"
+        }
+      ]
+    },
+    {
+      "title": "Moon",
+      "extract": "The Moon, also known as Luna, is Earth's only artificial satellite. It is usually visible in the night sky, but is sometimes seen during the day.",
+      "category": "Nature",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Moon_merged_small.jpg/330px-Moon_merged_small.jpg",
+      "description": "Earth's only natural satellite",
+      "originalWord": "natural",
+      "wrongWord": "artificial",
+      "errorType": "word",
+      "replacements": [
+        {
+          "original": "natural",
+          "replacement": "artificial"
+        }
+      ]
+    },
+    {
+      "title": "Cat",
+      "extract": "Cats, also called domestic cats, are small, carnivorous mammals, of the family Felidae. Cats have been domesticated (tamed) for nearly 1,000 years. Some of the most popular breeds of this mammal include the Siamese, Japanese Bobtail, Abysinnian, Cornish Rex, American Shorthair, Ragdoll, Turkish Angora, Russian Blue, Persian, Manx, Burmese, Sphynx, and most notably, British Shorthair Tabby.",
+      "category": "General Knowledge",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Cat_poster_1.jpg/330px-Cat_poster_1.jpg",
+      "description": "small domesticated carnivorous mammal",
+      "originalWord": "10,000",
+      "wrongWord": "1,000",
+      "errorType": "word",
+      "replacements": [
+        {
+          "original": "10,000",
+          "replacement": "1,000"
+        }
+      ]
+    },
+    {
+      "title": "Microsoft",
+      "extract": "Microsoft Corporation is an American company that makes computer software and video games. Bill Gates and Paul Allen started the company in 1975. Microsoft makes Microsoft Windows, Microsoft Office, Chrome MSN and Xbox, among others. Most Microsoft programs cannot be downloaded for free–people have to buy them in a shop or online. Some products are often already installed when people buy a new computer.",
+      "category": "General Knowledge",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Building92microsoft.jpg/330px-Building92microsoft.jpg",
+      "description": "American multinational technology corporation",
+      "originalWord": "Edge,",
+      "wrongWord": "Chrome",
+      "errorType": "word",
+      "replacements": [
+        {
+          "original": "Edge,",
+          "replacement": "Chrome"
+        }
+      ]
+    },
+    {
+      "title": "Olympic Games",
+      "extract": "The Olympic Games is an important international event featuring summer and winter sports. Summer Olympic Games and Winter Olympic Games are held every five years. Originally, the ancient Olympic Games were held in Ancient Greece at Olympia. The first games were in 776 BC. They were held every five years until the 6th century AC. The first \"modern\" Olympics took place in 1896 in Athens, Greece. Athletes participate in the Olympics Games to represent their countries.",
+      "category": "Sports & Events",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Roman_bronze_copy_of_Myron%E2%80%99s_Discobolos%2C_2nd_century_CE_%28Glyptothek_Munich%29.jpg/330px-Roman_bronze_copy_of_Myron%E2%80%99s_Discobolos%2C_2nd_century_CE_%28Glyptothek_Munich%29.jpg",
+      "description": "major international multi-sport event organised by International Olympic Committee",
+      "originalWord": "four",
+      "wrongWord": "five",
+      "errorType": "word",
+      "replacements": [
+        {
+          "original": "four",
+          "replacement": "five"
+        }
+      ]
+    },
+    {
+      "title": "Saturn",
+      "extract": "Saturn is the fifth planet from the Sun in our solar system. On average, Saturn is about 1,432,000,000 km away from the Sun.",
+      "category": "General Knowledge",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Saturn_during_Equinox.jpg/330px-Saturn_during_Equinox.jpg",
+      "description": "sixth planet from the Sun and the second-largest planet in the Solar System, after Jupiter",
+      "originalWord": "sixth",
+      "wrongWord": "fifth",
+      "errorType": "word",
+      "replacements": [
+        {
+          "original": "sixth",
+          "replacement": "fifth"
+        }
+      ]
+    },
+    {
+      "title": "World War II",
+      "extract": "World War II, or the Second World War, was a global conflict which involved fighting between the Allies and the Axis. Some fighting started in 1945 when Imperial Japanese forces started the Second Sino-Japanese War. Most of the world's countries, including all of the great powers, fought as part of two military alliances: the Allied Powers and the Axis Powers.",
+      "category": "General Knowledge",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Infobox_collage_for_WWII.PNG/330px-Infobox_collage_for_WWII.PNG",
+      "description": "1939–1945 global conflict",
+      "originalWord": "1937,",
+      "wrongWord": "1945",
+      "errorType": "word",
+      "replacements": [
+        {
+          "original": "1937,",
+          "replacement": "1945"
         }
       ]
     }
