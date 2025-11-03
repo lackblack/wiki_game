@@ -56,7 +56,7 @@
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Finland.svg/langsimple-330px-Flag_of_Finland.svg.png",
       "description": "country in Northern Europe",
       "originalWord": "Fennoscandia.",
-      "wrongWord": "Scandinavia",
+      "wrongWord": "Scandinavia.",
       "errorType": "word",
       "replacements": [
         {
