@@ -6,8 +6,8 @@ class WikiGame {
         this.originalWord = null;
         this.errorSentence = null;
         this.errorType = null; // 'word' or 'sentence'
-        this.triesRemaining = 2;
-        this.maxTries = 2;
+        this.triesRemaining = 3;
+        this.maxTries = 3;
         this.selectedWords = []; // Array of selected word elements
         this.wordReplacements = null; // Loaded from JSON config
         this.replacementsLoaded = false;
