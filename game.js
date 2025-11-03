@@ -1084,46 +1084,61 @@ class WikiGame {
             const normalizedErrorWords = errorWords.map(ew => ew.replace(/[^\w]/g, '').toLowerCase());
             const normalizedOriginalWords = originalWords.map(ow => ow.replace(/[^\w]/g, '').toLowerCase());
             
-            // Check if any selected word matches any error word (wrong word in text)
-            // User should select the WRONG word that's displayed in the article
-            const matchesError = guessWords.some(gw => {
+            // Count how many selected words match wrong words (error words)
+            let correctMatches = 0;
+            let incorrectMatches = 0;
+            
+            // Check each selected word
+            guessWords.forEach(gw => {
                 const normalizedGw = gw.replace(/[^\w]/g, '');
-                return normalizedErrorWords.some(ew => {
+                
+                // Check if it matches any wrong word (should be selected)
+                const matchesError = normalizedErrorWords.some(ew => {
                     const match = normalizedGw === ew || normalizedGw.includes(ew) || ew.includes(normalizedGw);
-                    if (match) console.log(`Match found: "${normalizedGw}" matches error word "${ew}"`);
+                    if (match) {
+                        console.log(`✓ Correct: "${normalizedGw}" matches wrong word "${ew}"`);
+                    }
                     return match;
                 });
-            });
-            
-            // Also check if matches original (in case user somehow selects the correct word)
-            const matchesOriginal = guessWords.some(gw => {
-                const normalizedGw = gw.replace(/[^\w]/g, '');
-                return normalizedOriginalWords.some(ow => {
+                
+                // Check if it matches any original/correct word (should NOT be selected)
+                const matchesOriginal = normalizedOriginalWords.some(ow => {
                     const match = normalizedGw === ow || normalizedGw.includes(ow) || ow.includes(normalizedGw);
-                    if (match) console.log(`Match found: "${normalizedGw}" matches original word "${ow}"`);
+                    if (match) {
+                        console.log(`✗ Incorrect: "${normalizedGw}" matches correct word "${ow}" (should not be selected)`);
+                    }
                     return match;
                 });
+                
+                if (matchesError) {
+                    correctMatches++;
+                } else if (matchesOriginal) {
+                    incorrectMatches++;
+                } else {
+                    // This word doesn't match any wrong or correct word - it's an extra word
+                    console.log(`✗ Extra word selected: "${normalizedGw}" (not a wrong word)`);
+                    incorrectMatches++; // Count extra words as incorrect
+                }
             });
             
-            // Also check if the full guess matches
+            // Also check if the full guess matches (for single-word selections)
             const normalizedGuess = guess.replace(/[^\w\s]/g, '').trim();
             const fullMatchesError = normalizedErrorWords.some(ew => {
-                const match = normalizedGuess === ew || normalizedGuess.includes(ew) || ew.includes(normalizedGuess);
-                if (match) console.log(`Full match found: "${normalizedGuess}" matches error word "${ew}"`);
-                return match;
-            });
-            const fullMatchesOriginal = normalizedOriginalWords.some(ow => {
-                const match = normalizedGuess === ow || normalizedGuess.includes(ow) || ow.includes(normalizedGuess);
-                if (match) console.log(`Full match found: "${normalizedGuess}" matches original word "${ow}"`);
-                return match;
+                return normalizedGuess === ew || normalizedGuess.includes(ew) || ew.includes(normalizedGuess);
             });
             
-            console.log('Matches error:', matchesError);
-            console.log('Matches original:', matchesOriginal);
-            console.log('Full matches error:', fullMatchesError);
-            console.log('Full matches original:', fullMatchesOriginal);
+            console.log(`Selected words: ${guessWords.length}, Correct matches: ${correctMatches}, Incorrect matches: ${incorrectMatches}`);
             
-            if (matchesError || matchesOriginal || fullMatchesError || fullMatchesOriginal) {
+            // Win condition: Must select ONLY wrong words, no correct words, no extra words
+            // Allow partial credit if there are multiple wrong words and user selects some of them
+            const hasCorrectWord = correctMatches > 0;
+            const hasIncorrectWord = incorrectMatches > 0;
+            const allWordsAreWrong = hasCorrectWord && !hasIncorrectWord;
+            
+            // Special case: if single word guess matches exactly, allow it
+            const isSingleWordExactMatch = guessWords.length === 1 && fullMatchesError;
+            
+            if ((allWordsAreWrong || isSingleWordExactMatch) && hasCorrectWord) {
                 isCorrect = true;
                 // Show all corrections if multiple
                 if (errorWords.length > 1) {
@@ -1135,7 +1150,7 @@ class WikiGame {
                     correctAnswer = `"${this.errorWord}" should be "${this.originalWord}"`;
                 }
             } else {
-                console.log('No match found. Check failed.');
+                console.log('Guess failed: must select ONLY wrong word(s), no extra or correct words.');
             }
         } else {
             // Check if guess matches key words from the error sentence
