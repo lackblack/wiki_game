@@ -72,13 +72,15 @@ class WikiGame {
     }
     
     async loadArticlesConfig() {
-        // PRIORITY: Load from file first (source of truth - articles-config.json)
+        // ONLY load from articles-config.json - no fallback to localStorage
         try {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 2000);
             
-            const response = await fetch('articles-config.json', {
-                signal: controller.signal
+            // Add cache-busting to prevent browser from using cached version
+            const response = await fetch(`articles-config.json?t=${Date.now()}`, {
+                signal: controller.signal,
+                cache: 'no-store'
             });
             
             clearTimeout(timeoutId);
@@ -87,31 +89,23 @@ class WikiGame {
                 this.articlesConfig = await response.json();
                 console.log(`✓ Loaded ${this.articlesConfig.articles.length} articles from articles-config.json`);
                 console.log('Article titles:', this.articlesConfig.articles.map(a => a.title));
-                // Sync to localStorage (overwrite any old data)
-                this.saveArticlesConfigToStorage();
+                
+                // Validate that we have articles
+                if (!this.articlesConfig.articles || this.articlesConfig.articles.length === 0) {
+                    console.error('⚠ articles-config.json is empty or has no articles');
+                    this.articlesConfig = { version: "1.0", articles: [] };
+                }
                 return;
+            } else {
+                console.error(`⚠ Failed to load articles-config.json: HTTP ${response.status}`);
             }
         } catch (error) {
-            console.warn('Could not load articles-config.json, trying localStorage:', error);
+            console.error('Error loading articles-config.json:', error);
         }
         
-        // Fallback: try localStorage (only if file doesn't exist)
-        const saved = localStorage.getItem('wikiGameArticles');
-        if (saved) {
-            try {
-                this.articlesConfig = JSON.parse(saved);
-                console.log(`⚠ Loaded ${this.articlesConfig.articles.length} articles from localStorage (fallback)`);
-                console.log('Article titles:', this.articlesConfig.articles.map(a => a.title));
-                console.warn('⚠ WARNING: Using localStorage. articles-config.json should be the source of truth!');
-                return;
-            } catch (error) {
-                console.error('Error parsing localStorage articles:', error);
-            }
-        }
-        
-        // Default: empty config
+        // If file loading fails, use empty config
         this.articlesConfig = { version: "1.0", articles: [] };
-        console.log('No articles config found, using empty config');
+        console.error('❌ Could not load articles-config.json. Game will not work without articles.');
     }
     
     saveArticlesConfigToStorage() {
